@@ -1,3 +1,7 @@
+# Modified version of richstokes/Forza-data-tools
+
+Adds option to output to socket.io
+
 # Forza data tools
 Building some tools for playing with the UDP data out feature from the Forza Motorsport 7 / Forza Horizon 4 games. Built with [golang](https://golang.org/dl/).  
 
