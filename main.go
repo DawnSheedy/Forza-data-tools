@@ -20,6 +20,7 @@ import (
 	// "encoding/csv"
 	// "sort"
 	"encoding/json"
+	//socketio
 )
 
 const hostname = "0.0.0.0"            // Address to listen on (0.0.0.0 = all interfaces)
@@ -162,7 +163,7 @@ func readForzaData(conn *net.UDPConn, telemArray []Telemetry, csvFile string) {
 	} // end of if CSV enabled
 
 	// Send data to JSON server if enabled:
-	if isFlagPassed("j") == true {
+	if isFlagPassed("j") || isFlagPassed("s") {
 		var jsonArray [][]byte
 
 		s32json, _ := json.Marshal(s32map)
@@ -196,6 +197,10 @@ func readForzaData(conn *net.UDPConn, telemArray []Telemetry, csvFile string) {
 		jsonData = fmt.Sprintf("%s", jd)
 
 	} // end of if jsonEnabled
+
+	if isFlagPassed("s") {
+		SendTelemetryOverSocket(jsonData)
+	}
 }
 
 func main() {
@@ -205,12 +210,14 @@ func main() {
 	jsonPTR := flag.Bool("j", false, "Enables JSON HTTP server on port 8080")
 	noTermPTR := flag.Bool("q", false, "Disables realtime terminal output if set")
 	debugModePTR := flag.Bool("d", false, "Enables extra debug information if set")
+	socketModePTR := flag.Bool("s", false, "Enables socket.io output if set")
 	flag.Parse()
 	csvFile := *csvFilePtr
 	horizonMode := *horizonPTR
 	jsonEnabled := *jsonPTR
 	noTerm := *noTermPTR
 	debugMode := *debugModePTR
+	socketMode := *socketModePTR
 
 	SetupCloseHandler(csvFile) // handle CTRL+C
 
@@ -220,6 +227,10 @@ func main() {
 
 	if noTerm {
 		log.Println("Realtime terminal data output disabled")
+	}
+
+	if socketMode {
+		log.Println("Socket.io output enabled.")
 	}
 
 	// Switch to Horizon format if needed
@@ -326,6 +337,10 @@ func main() {
 	// Start JSON server if requested
 	if jsonEnabled {
 		go serveJSON()
+	}
+
+	if socketMode {
+		go SetupSocketServer()
 	}
 
 	// Setup UDP listener
