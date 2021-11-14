@@ -1,6 +1,21 @@
 # Modified version of richstokes/Forza-data-tools
 
-Adds option to output to socket.io
+Adds option to output to socket.io and a web interface that can be viewed on a second device/loaded into OBS as a Browser Source.
+
+## Build/Setup
+
+`cd hud`
+`npm install`
+`npm run build`
+
+Build FDT with the instructions from the forked readme below then run with `fdt -q -z -s`
+Remove `-z` if not playing Horizon. Untested with motorsport.
+
+View the HUD by navigating to localhost:8000/hud
+
+## Forza Setup
+
+In your game options enable Data Out and set your IP to the IP and port output when FDT starts.
 
 # Forza data tools
 Building some tools for playing with the UDP data out feature from the Forza Motorsport 7 / Forza Horizon 4 games. Built with [golang](https://golang.org/dl/).  
