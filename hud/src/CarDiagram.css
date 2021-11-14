@@ -1,0 +1,189 @@
+.car-diag {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 5px;
+    margin: 30px;
+    overflow: hidden;
+}
+
+.car-diag__flex-container {
+    display: flex;
+    margin: 10px;
+    gap: 10px;
+}
+
+.car-diag__brakes {
+    width: 20px;
+    height: 15.5px;
+    background-color: red;
+}
+
+.car-diag__accel {
+    width: 20px;
+    height: 15.5px;
+    background-color: rgb(0, 81, 255);
+}
+
+.car-diag__label {
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    bottom: 60px;
+    border: 1px solid white;
+    padding: 5px;
+    height: fit-content;
+}
+
+.car-diag__label.dim {
+    opacity: 0.2;
+}
+
+.car-diag__water {
+    font-size: 10px;
+    text-orientation: sideways;
+    writing-mode: vertical-lr;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    bottom: 60px;
+    opacity: 0;
+}
+
+.wheel-diag {
+    height: 100px;
+    border: 2px solid white;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.wheel-diag__indicator-label {
+    z-index: 10;
+    font-size: 10px;
+    text-orientation: sideways;
+    writing-mode: vertical-lr;
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: 600;
+    text-align: center;
+    width: auto;
+    opacity: .5;
+}
+
+.wheel-diag__indicator-label-flat {
+    z-index: 10;
+    font-size: 10px;
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+    opacity: .0;
+}
+
+.wheel-diag__parent {
+    border: 1px solid white;
+    padding: 5px;
+}
+
+.wheel-diag__container {
+    width: 100px;
+    justify-content: center;
+    display:flex;
+}
+
+.wheel-diag__flex-container {
+    display: flex;
+}
+
+.wheel-diag__indicator-container {
+    height: 100px;
+    position: relative;
+    width: 20px;
+}
+
+.wheel-diag__rpm-indicator-container {
+    height: 70px;
+    position: relative;
+    width: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.wheel-diag__rpm-indicator {
+    width: 100%;
+    margin-top: -2px;
+}
+
+.wheel-diag__rpm-indicator.animated {
+    animation-name: wheelSpin;
+    animation-timing-function: linear;
+    animation-duration: 10s;
+}
+
+@keyframes wheelSpin {
+    0% {
+        top: -18px;
+        opacity: .6;
+    }
+    10% {
+        opacity: 1;
+    }
+    40% {
+        opacity: 1;
+    }
+    50% {
+        top: 68px;
+    }
+    60% {
+        opacity: 0.2;
+    }
+    90% {
+        opacity: .2;
+    }
+    100% {
+        opacity: 0.6;
+        top: -18px;
+    }
+}
+
+.wheel-diag__indicator-container.border {
+    border-left: 2px solid white;
+}
+
+.wheel-diag__indicator-bar {
+    z-index: -1;
+    width: 100%;
+    height: 100px;
+    background-color: rgb(255, 0, 76);
+    position: absolute;
+    bottom: 0px;
+    overflow: hidden;
+}
+
+.wheel-diag__indicator-bar.grip {
+    background-color: rgb(0, 119, 255);
+}
+
+.flicker {
+    animation-name: flicker;
+    animation-direction: alternate;
+    animation-duration: 100ms;
+    animation-iteration-count: infinite;
+}
+
+.flicker.slow {
+    animation-duration: 200ms;
+}
+
+@keyframes flicker {
+    0% {
+        opacity: .2;
+        border-color: red;
+    }
+
+    100% {
+        opacity: 1;
+        border-color: red;
+    }
+}

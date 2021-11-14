@@ -1,6 +1,5 @@
 testing/*
 *.csv
 hud/node_modules
-hud
 fdt
 .DS_Store
