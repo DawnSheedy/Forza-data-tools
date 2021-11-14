@@ -20,7 +20,7 @@ function App() {
   */
 
   useEffect(() => {
-    const newSocket = io("http://localhost:3000")
+    const newSocket = io(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port)
     setSocket(newSocket)
 
     newSocket.on('connect', (data) => {
@@ -34,7 +34,7 @@ function App() {
   }, [setSocket])
 
   return (
-    <div className="App crt crt-abberation">
+    <div className="App crt-abberation">
       <CarDiagram telemetry={data} />
     </div>
   );

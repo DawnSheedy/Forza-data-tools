@@ -9,7 +9,7 @@ function WheelDiagram(props) {
     <WheelRPMDiagram telemetry={props.telemetry} wheel={props.wheel} />
     <div class="wheel-diag__container">
       
-      <span className={`car-diag__water ${props.telemetry[2]["NormalizedSuspensionTravel"+props.wheel] < 0.01 ? " flicker" : ""}`}>AIRBORNE</span>
+      <span className={`car-diag__water ${props.telemetry[2]["NormalizedSuspensionTravel"+props.wheel] < 0.01 ? " flicker" : ""}`}>NO CONTACT</span>
         <div class="wheel-diag">
         <div class="wheel-diag__flex-container">
             <WheelDiagramBar classMod="grip sideborder" mapTop={1} width={16} telemetry={props.telemetry} dataIndex={2} wheelDataType={"NormalizedSuspensionTravel"} wheel={props.wheel} label="SHOCK" />
@@ -20,7 +20,7 @@ function WheelDiagram(props) {
 
     <span className={`car-diag__water ${props.telemetry[2]["WheelInPuddleDepth"+props.wheel] > 0 ? " flicker" : ""}`}>SUBMERGED</span>
     </div>
-    <div className={`wheel-diag__indicator-label-flat ${props.telemetry[2]["TireCombinedSlip"+props.wheel] > .75 ? " flicker slow" : ""}`}>SLIPPING</div>
+    <div className={`wheel-diag__indicator-label-flat ${props.telemetry[2]["TireCombinedSlip"+props.wheel] > .95 ? " flicker slow" : ""}`}>SLIPPING</div>
     </div>
   );
 }

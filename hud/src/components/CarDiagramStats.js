@@ -8,7 +8,10 @@ Number.prototype.map = function (in_min, in_max, out_min, out_max) {
     return (this - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
 
-function CarDiagramBrakes(props) {
+var classes = ['D','C','B','A','S1','S2','X']
+var drivetrain = ['FWD', 'RWD', 'AWD']
+
+function CarDiagramStats(props) {
     const brakeStyles= useSpring({
         width: props.telemetry[4].Brake.map(0,255,0,200)+"px",
         config: config.stiff 
@@ -24,12 +27,11 @@ function CarDiagramBrakes(props) {
     return (
         <>
         <div class="car-diag__flex-container">
-            <animated.span className={`car-diag__label dim ${props.telemetry[4].HandBrake > 0 ? " flicker" : ""}`}>BRAKE</animated.span>
-            <animated.span className={`car-diag__label dim ${props.telemetry[4].Clutch > 0 ? " flicker" : ""}`}>CLUTCH</animated.span>
-            <span className={`car-diag__label ${props.telemetry[2].CurrentEngineRpm > props.telemetry[2].EngineMaxRpm-800 ? " flicker" : ""}`}>GEAR: {props.telemetry[4].Gear == 0 ? 'R' : props.telemetry[4].Gear}</span>
+            <span className={`car-diag__label ${props.telemetry[0].CurrentEngineRpm > props.telemetry[2].EngineMaxRpm-800 ? " flicker" : ""}`}>{classes[props.telemetry[0].CarClass]}/{props.telemetry[0].CarPerformanceIndex}/{drivetrain[props.telemetry[0].DrivetrainType]}</span>
+            <span className={`car-diag__label ${props.telemetry[0].CurrentEngineRpm > props.telemetry[2].EngineMaxRpm-800 ? " flicker" : ""}`}>{Math.trunc(props.telemetry[2].Speed*2.23694)} MPH</span>
         </div>
         </>
     );
 }
 
-export default CarDiagramBrakes;
+export default CarDiagramStats;
